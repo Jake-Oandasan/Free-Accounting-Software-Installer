@@ -2,13 +2,15 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
   xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
   <?define sourceFolder="E:\Projects\C#\Free-Accounting-Software\Free Accounting Software\bin\Release\"?>
+  <?define reportFolder="E:\Projects\C#\Free-Accounting-Software\Free Accounting Software\External\Printouts\"?>
   <Product Id="*" Name="Free Accounting Software" Language="1033" Version="1.0.0.0" Manufacturer="None" UpgradeCode="1a4ede03-83c4-484a-bad1-e4708c896e91">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <PropertyRef Id="NETFRAMEWORK45"/>
 
     <!-- Installer icon -->
     <Icon Id="Application.ico" SourceFile="$(var.sourceFolder)..\..\Application.ico"/>
-    <Icon Id="configure.ico" SourceFile="$(var.sourceFolder)..\..\..\Images\configure.ico"/>
+    <Icon Id="configConnection.ico" SourceFile="$(var.sourceFolder)..\..\..\Images\Configure Connection.ico"/>
+    <Icon Id="configReport.ico" SourceFile="$(var.sourceFolder)..\..\..\Images\Configure Report.ico"/>
     <Property Id="ARPPRODUCTICON" Value="Application.ico"/>
 
     <!-- .NET Version -->
@@ -32,33 +34,69 @@
 
     <!-- Program Files main exe and dll-->
     <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      
       <Component Id="FreeAccountingSoftware.exe" Guid="645f98ac-942d-42a2-9b15-941ea9bab5f6">
         <File Id="FreeAccountingSoftware.exe" Source="$(var.sourceFolder)FreeAccountingSoftware.exe" KeyPath="yes" Checksum="yes"/>
       </Component>
+      
       <Component Id="JkComponents.dll" Guid="de7627e1-f9b6-4db8-ad17-9ad22042e7c4">
         <File Id="JkComponents.dll" Source="$(var.sourceFolder)\JkComponents.dll" KeyPath="yes" Checksum="yes"/>
       </Component>
+      
       <Component Id="FreeAccountingSoftware.exe.config" Guid="0c4c5153-de7a-4075-bfdc-b5f25f2c3d96">
         <File Id="FreeAccountingSoftware.exe.config" Source="$(var.sourceFolder)\FreeAccountingSoftware.exe.config" KeyPath="yes" Checksum="yes"/>
+      </Component>
+      
+      <Component Id="BalanceSheet.rdlc" Guid="">
+        <File Id="BalanceSheet.rdlc" Source="$(var.reportFolder)\Balance Sheet.rdlc" KeyPath="yes" Checksum="yes"/>
+      </Component>
+
+      <Component Id="GeneralLedger.rdlc" Guid="">
+        <File Id="GeneralLedger.rdlc" Source="$(var.reportFolder)\General Ledger.rdlc" KeyPath="yes" Checksum="yes"/>
+      </Component>
+
+      <Component Id="IncomeStatement.rdlc" Guid="">
+        <File Id="IncomeStatement.rdlc" Source="$(var.reportFolder)\Income Statement.rdlc" KeyPath="yes" Checksum="yes"/>
+      </Component>
+
+      <Component Id="JournalVoucher.rdlc" Guid="">
+        <File Id="JournalVoucher.rdlc" Source="$(var.reportFolder)\Journal Voucher.rdlc" KeyPath="yes" Checksum="yes"/>
+      </Component>
+
+      <Component Id="Journal.rdlc" Guid="">
+        <File Id="Journal.rdlc" Source="$(var.reportFolder)\Journal.rdlc" KeyPath="yes" Checksum="yes"/>
+      </Component>
+
+      <Component Id="TrialBalance.rdlc" Guid="">
+        <File Id="TrialBalance.rdlc" Source="$(var.reportFolder)\Trial Balance.rdlc" KeyPath="yes" Checksum="yes"/>
       </Component>
     </DirectoryRef>
 
     <!-- Start menu -->
     <DirectoryRef Id="ApplicationProgramsFolder">
       <Component Id="ApplicationShortcut" Guid="cb84d131-8f5b-40fc-9b38-c3bd75e6a6a2">
-        <Shortcut Id="ApplicationConfigureStartMenuShortcut"
-           Name="Configure"
-           Target="[#FreeAccountingSoftware.exe]"
-           WorkingDirectory="APPLICATIONROOTDIRECTORY"
-           Arguments="-cc"
-           Icon="configure.ico"/> 
-       
+        
         <Shortcut Id="ApplicationStartMenuShortcut"
           Name="Free Accounting Software"
           Target="[#FreeAccountingSoftware.exe]"
           WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
         <RemoveFolder Id="CleanUpShortCut" Directory="ApplicationProgramsFolder" On="uninstall"/>
         <RegistryValue Root="HKCU" Key="Software\FreeAccountingSoftware" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+        
+        <Shortcut Id="ApplicationConfiConnectionStartMenuShortcut"
+           Name="Configure Connection"
+           Target="[#FreeAccountingSoftware.exe]"
+           WorkingDirectory="APPLICATIONROOTDIRECTORY"
+           Arguments="-cc"
+           Icon="configConnection.ico"/>
+
+        <Shortcut Id="ApplicationConfigReportStartMenuShortcut"
+           Name="Configure Report Path"
+           Target="[#FreeAccountingSoftware.exe]"
+           WorkingDirectory="APPLICATIONROOTDIRECTORY"
+           Arguments="-rr"
+           Icon="configReport.ico"/>
+
       </Component>
     </DirectoryRef>
 
@@ -79,6 +117,12 @@
       <ComponentRef Id="FreeAccountingSoftware.exe" />
       <ComponentRef Id="JkComponents.dll" />
       <ComponentRef Id="FreeAccountingSoftware.exe.config" />
+      <ComponentRef Id="BalanceSheet.rdlc" />
+      <ComponentRef Id="GeneralLedger.rdlc" />
+      <ComponentRef Id="IncomeStatement.rdlc" />
+      <ComponentRef Id="JournalVoucher.rdlc" />
+      <ComponentRef Id="Journal.rdlc" />
+      <ComponentRef Id="TrialBalance.rdlc" />
       <ComponentRef Id="ApplicationShortcut" />
       <ComponentRef Id="ApplicationShortcutDesktop" />
     </Feature>
