@@ -6,8 +6,9 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>32ecd128-f690-4cc0-aa33-0832303e713f</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>Free Accounting Software Installer</OutputName>
+    <OutputName>Jk Accounting Software Installer</OutputName>
     <OutputType>Package</OutputType>
+    <Name>Jk Accounting Software Installer</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>

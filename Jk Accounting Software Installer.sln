@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Free Accounting Software Installer", "Free Accounting Software Installer\Free Accounting Software Installer.wixproj", "{32ECD128-F690-4CC0-AA33-0832303E713F}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Jk Accounting Software Installer", "Jk Accounting Software Installer\Jk Accounting Software Installer.wixproj", "{32ECD128-F690-4CC0-AA33-0832303E713F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
